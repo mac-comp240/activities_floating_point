@@ -1,14 +1,13 @@
 #include <stdio.h>
 #include <string.h>
 
-/*
- *  This is an example for bit-level encoding of floats
- */
-
 /* use typedef so that an unsigned value becomes the bits for a
   hypothetical floting point representation
  */
 typedef unsigned float_bits;
+
+typedef unsigned char *byte_pointer;  //from original show_bytes activity
+
 
 /*
  * This fnction takes an unsigned value and checks to see if its

@@ -1,6 +1,34 @@
-# Data Activity 5: Floating Point representation at the bit level
+# Data Activity 8: Binary Floatin Point Representation
+## Put your name(s) here
 
-Folder: `5-floating-point`
+In this activity, you will explore the bit-level representation of floating-point numbers. Recall that in the IEEE single precision representation:
+- the leftmost, or most significant bit, is the sign bit
+- the next 8 bits are the 'exp' value
+- the next 23 bits, or the least significant 23 bits are the 'frac' value
+
+For this activity, it is useful to also recall that the floating point numbers
+fall into several categories, each of which encodes the above pieces differently
+and which represent a range of possible represented values as follows:
+
+![Floating Point Numberline](./img/FPRangeLine.png)
+
+You will investigate each of these encodings by considering their bit level
+representations, just like the machine does.
+- You will ???
+
+
+## Provided Code
+
+This program has the typical split between a library of functions and other definitions, and a main program that tests them:
+- `Makefile`
+    - a makefile to automate the compilation process
+- `fp_coding_ex.c` and `fp_coding_ex.h`
+    - Library containing functions for examining bits of a floating point number
+- `test.c`
+    - Main program that tests the functions in the library
+
+
+### The `fp_coding_ex.c` file contents
 
 The file `fp_coding_ex.c` contains code designed to examine the bit-level
 encodings of floating point numbers. This line near the top of the file is a key
@@ -17,27 +45,15 @@ The code contains some functions from an earlier activity where we broke down
 data representations into their individual bytes. You should be able to compile
 and run this code as-is.
 
-The function `float_denorn_zero()` provides you with an example of how the
+The function `float_denorn_zero()` is an example of how the
 machine can manipulate the bits that make up the portions of a floating point
 number. The unsigned data type, which is 32 bits long and is defined to have the
 name `float_bits`, represents how a 32-bit floating point number could be stored
-as a bit pattern. Recall that in the IEEE single precision representation:
+as a bit pattern. 
 
+## Your Tasks
 
-- the leftmost, or most significant bit, is the sign bit
-- the next 8 bits are the 'exp' value
-- the next 23 bits, or the least significant 23 bits are the 'frac' value
-
-For this activity, it is useful to also recall that the floating point numbers
-fall into several categories, each of which encodes the above pieces differently
-and which represent a range of possible represented values as follows:
-
-![Floating Point Numberline](./img/FPRangeLine.png)
-
-You will now investigate each of these encodings by considering their bit level
-representations, just like the machine does.
-
-## 1: Denormalized values 
+### Task 1: Denormalized values 
 
 Your first task is to determine some positive and negative denormalized
 bit-pattern values for 32-bit single precision and test this function,
@@ -47,7 +63,7 @@ Recall from class (see lecture notes on moodle) that numbers are represented usi
 
 <p>(-1)<sup>s</sup>   x  M   x   2<sup>E</sup></p>
 
-In the case of denormalized values, which are used for small numbers, the exp
+In the case of denormalized values, which are used for small numbers, the exponent
 bits are all zero.  
 
 1. How is the exponent E computed for the *denormalized* numbers in 32-bit
@@ -113,3 +129,20 @@ Now that this seems to work, you can use `generate_float` on a range of
 denormalized bit patterns in a loop and use assert to ensure that
 `float_denorn_zero()` returns what you expect. The you can try it for ranges of
 normalized numbers.
+
+
+## References
+
+- Floating point representations
+   - ![Floating Point Numberline](./img/FPRangeLine.png)
+   - [Binary Fractions and Floating Point](https://ryanstutorials.net/binary-tutorial/binary-floating-point.php) 
+   - [Wikipedia, IEEE 754](https://en.wikipedia.org/wiki/IEEE_754#References)
+   - [Digipen page on Floating Points](https://azrael.digipen.edu/~mmead/www/Courses/CS220/IEEE754.html)
+
+- Printf formatting codes
+  - [printf format specifier reference from cplusplus.com](http://www.cplusplus.com/reference/cstdio/printf/).
+  [_Format Specifiers in C_](https://www.thecrazyprogrammer.com/2016/10/format-specifiers-c.html) by The Crazy Programmer- General C syntax help
+  - [Chapter 1 of _Dive into Systems_](https://diveintosystems.org/book/C1-C_intro/index.html)
+  - _The C Programming Language_, often just known as K&R for Kernighan and Ritchie
+  - _C: A Reference Manual_, by Harbitson and Steele
+

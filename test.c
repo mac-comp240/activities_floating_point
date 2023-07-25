@@ -1,18 +1,6 @@
 #include <stdio.h>
+#include "fp_coding_ex.h"
 
-/*
- *  Testing of functions in fp_coding_ex.c
- */
-
-typedef unsigned float_bits;
-typedef unsigned char *byte_pointer;  //from original show_bytes activity
-
-// from fp_coding_ex.c
-float_bits float_denorn_zero(float_bits f);
-float_bits float_negate(float_bits f);
-void show_bytes(byte_pointer start, int len);
-void show_float(float x);
-void binary(unsigned int input, char* result);
 
 int main() {
   float_bits value = 0;  //change this for testing, try more values
