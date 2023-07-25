@@ -31,62 +31,16 @@ float_bits float_denorn_zero(float_bits f) {
   return (sign << 31) | (exp << 23) | frac ;
 }
 
-// TODO: you complete this
+// TODO: Write a function similar to float_denorn_zero
+// to check if a number is infinity or NaN
+
+
 /* Compute -f. If f is NaN, then return f. */
 float_bits float_negate(float_bits f) {
 
+  // TODO: complete this by replacing the code below with code that negates f
 
-  unsigned neg = f; //replace this with code that negates f
+  unsigned neg = f; //replace this line
 
   return neg;
 }
-
-/* begin show_bytes*/
-typedef unsigned char *byte_pointer;
-
-/*
- * prints out len bytes in a memory value pointed to by start
- *
- */
-void show_bytes(byte_pointer start, int len) {
-    int i;
-    for (i = 0; i < len; i++)
-	     printf(" %.2x", start[i]);    // function designed to print
-    printf("\n");
-}
-
-/*
- *  Use show_bytes on a float representation
- */
-void show_float(float x) {
-    show_bytes((byte_pointer) &x, sizeof(float));
-}
-/* end show_bytes code */
-
-// In case you want to look at the binary string representation:
-/*
- *
- *  This function creates a string representing the binary
- *  number that is stored for a given input integer.
- *  This is placed in the character string passed in called result.
- *  result must be 1 character longer than the string of bits,
- *  whose length is num_bits.
- */
- void binary(unsigned int input, char* result) {
-   	//initialize the binary string
- 	strcpy(result, "");
-
- 	int i;
- 	for(i = (sizeof(unsigned int)*8) - 1; i >= 0; --i) {
- 		if(input & (1 << i)) {
- 			strcat(result, "1");
- 		} else {
- 			strcat(result, "0");
- 		}
- 		// easier to read with spaces after 4 each bits
- 		if (i%4 == 0 && i > 0) {
- 			strcat(result, " ");
- 		}
-
- 	}
- }

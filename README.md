@@ -10,11 +10,14 @@ For this activity, it is useful to also recall that the floating point numbers
 fall into several categories, each of which encodes the above pieces differently
 and which represent a range of possible represented values as follows:
 
-![Floating Point Numberline](./img/FPRangeLine.png)
+![Floating Point Numberline](./img/FPRangeLine.jpg)
 
 You will investigate each of these encodings by considering their bit level
 representations, just like the machine does.
-- You will ???
+- You will test the range of normalized values and view their representation
+- You will test the range of denormalized values and view their representation
+- You will write a function to check if a float is infinity or NaN by evaluating its bit representation
+- You will complete a function to negate a bit representation of a float
 
 
 ## Provided Code
@@ -24,6 +27,8 @@ This program has the typical split between a library of functions and other defi
     - a makefile to automate the compilation process
 - `fp_coding_ex.c` and `fp_coding_ex.h`
     - Library containing functions for examining bits of a floating point number
+- `show_-_bytes.c` and `show_bytes.h`
+    - A library file with code to display the bytes of an integer
 - `test.c`
     - Main program that tests the functions in the library
 
@@ -53,19 +58,34 @@ as a bit pattern.
 
 ## Your Tasks
 
-### Task 1: Denormalized values 
 
-Your first task is to determine some positive and negative denormalized
+## Task 1: Normalized numbers
+
+Let's start by looking at normalized numbers. Recall that the binary number are represented using this general equation: $(-1)^s \times M \times 2^E$, where $s$ is the sign bit, $E$ is the biased exponent, and $M$ is the base or significand.
+
+With normalized numbers, the exponent is not zero.
+
+Discuss the following questions with your teammates:
+1. How is the exponent E computed for the *normalized* numbers in 32-bit single precision representation?
+2. How is the significand, M, encoded?
+3. Determine the largest and smallest normalized values, both positive and
+   negative (that means: the positive normalized value that is closest to zero, and the largest positive normalized value, the negative normalized value that is closest to zero, and the most negative (largest magnitude) negative normalized value). Give your answers in hex.
+
+See the references below for help determining these values.
+
+Test your answers in `main` by passing `float_denorn_zero` the four values you determined above (largest and smallest positive and negative normalized numbers).  Additionally, create values between those endpoints and
+test them as well.  
+
+### Task 2: Denormalized values 
+
+Your next task is to determine some positive and negative denormalized
 bit-pattern values for 32-bit single precision and test this function,
 `float_denorm_zero()`, with them.
 
-Recall from class (see lecture notes on moodle) that numbers are represented using this equation:
 
-<p>(-1)<sup>s</sup>   x  M   x   2<sup>E</sup></p>
+Recall that for denormalized values, which are used for small numbers, the exponent bits are all zero.  
 
-In the case of denormalized values, which are used for small numbers, the exponent
-bits are all zero.  
-
+Discuss with your teammates:
 1. How is the exponent E computed for the *denormalized* numbers in 32-bit
    single precision representation?
 2. How is the significand, M, encoded?
@@ -73,40 +93,26 @@ bits are all zero.
    smallest possible denormalized values? Write the answers for both the
    positive and negative ranges in hex.
 
-Once you have done so, test your answers in `main()` by calling
-`float_denorn_zero()`. Additionally, create values between those endpoints and
-test them as well.  [This reference by Steve Hollasch may be
-useful](http://steve.hollasch.net/cgindex/coding/ieeefloat.html).
+See the references below for help determining these values.
 
-## 2: Normalized numbers
+Once you have answered these questions, test your answers by calling `float_denorn_zero` in `main` and passing the smallest and largest denormalized values. Additionally, create values between those endpoints and
+test them as well.  
 
-Now let's turn our attention to the normalized numbers. Consider the following questions for review:
-
-1. How is the exponent E computed for the *normalized* numbers in 32-bit single precision representation?
-2. How is the significand, M, encoded?
-3. Determine the largest and smallest normalized values, both positive and
-   negative. Give your answers in hex.
-
-Again, test your answers in `main()` by calling `float_denorn_zero()`.
-
-
-## 3: Infinity and NaN 
+### Task 3: Infinity and NaN 
 
 How might you write a similar function to test whether a value is either
-infinity or NaN (not a number)? Implement and call this function.
+infinity or NaN (not a number)? Implement this function in `fp_coding_ex.c` and include test calls in `main`.
 
-## 4: Negation
+## Task 4: Negation
 
-Complete the function called `float_negate()` and test it in `main()`. This also
-illustrates how the machine would perform this operation.
+Complete the function called `float_negate` in `fp_coding_ex.c` and add test calls in `main`. Your function should build the new bit representation of the negated number, using shifting and masking. 
 
-## 5: Challenge
+## Task 5: Optional Challenge
 
 Suppose you wished to test out the full range of 32-bit patterns for floats.
 Recall from previous activities that we can use a pointer to unsigned char
 (`unsigned char*`) to inspect individual bytes of various types, including
-floats. This was done in the `show_bytes` example code early in the semester and
-is provided again here.
+floats. This was done in the `show_bytes` example code provided again here.
 
 Let's start this process by creating a function that will make a float from its
 given bit pattern.
@@ -134,7 +140,7 @@ normalized numbers.
 ## References
 
 - Floating point representations
-   - ![Floating Point Numberline](./img/FPRangeLine.png)
+   - [Reference by Steve Hollasch](http://steve.hollasch.net/cgindex/coding/ieeefloat.html)
    - [Binary Fractions and Floating Point](https://ryanstutorials.net/binary-tutorial/binary-floating-point.php) 
    - [Wikipedia, IEEE 754](https://en.wikipedia.org/wiki/IEEE_754#References)
    - [Digipen page on Floating Points](https://azrael.digipen.edu/~mmead/www/Courses/CS220/IEEE754.html)
