@@ -1,4 +1,4 @@
-# Data Activity 8: Binary Floatin Point Representation
+# Data Activity 8: Binary Floating Point Representation
 ## Put your name(s) here
 
 In this activity, you will explore the bit-level representation of floating-point numbers. Recall that in the IEEE single precision representation:
@@ -30,7 +30,7 @@ This program has the typical split between a library of functions and other defi
 - `show_-_bytes.c` and `show_bytes.h`
     - A library file with code to display the bytes of an integer
 - `test.c`
-    - Main program that tests the functions in the library
+    - Main program that tests the functions in the  `fp_coding_ex` library
 
 
 ### The `fp_coding_ex.c` file contents
@@ -46,11 +46,8 @@ floating point numbers by treating their bit patterns as unsigned integers. This
 typedef helps us use the moniker `float_bits` to refer to the bit-level
 representation of a float.
 
-The code contains some functions from an earlier activity where we broke down
-data representations into their individual bytes. You should be able to compile
-and run this code as-is.
 
-The function `float_denorn_zero()` is an example of how the
+The function `float_denorn_zero` is an example of how the
 machine can manipulate the bits that make up the portions of a floating point
 number. The unsigned data type, which is 32 bits long and is defined to have the
 name `float_bits`, represents how a 32-bit floating point number could be stored
@@ -61,7 +58,7 @@ as a bit pattern.
 
 ## Task 1: Normalized numbers
 
-Let's start by looking at normalized numbers. Recall that the binary number are represented using this general equation: $(-1)^s \times M \times 2^E$, where $s$ is the sign bit, $E$ is the biased exponent, and $M$ is the base or significand.
+Let's start by looking at normalized numbers. Recall that the binary number are represented using this general equation: $(-1)^s \times M \times 2^E$, where $s$ is the sign bit, $E$ is the biased exponent, and $M$ is the mantissa or significand.
 
 With normalized numbers, the exponent is not zero.
 
@@ -69,18 +66,17 @@ Discuss the following questions with your teammates:
 1. How is the exponent E computed for the *normalized* numbers in 32-bit single precision representation?
 2. How is the significand, M, encoded?
 3. Determine the largest and smallest normalized values, both positive and
-   negative (that means: the positive normalized value that is closest to zero, and the largest positive normalized value, the negative normalized value that is closest to zero, and the most negative (largest magnitude) negative normalized value). Give your answers in hex.
+   negative (that means: the positive normalized value that is closest to zero, and the largest positive normalized value, the negative normalized value that is closest to zero, and the most negative (largest magnitude) negative normalized value). Give your answers as binary sequences written in hex.
 
 See the references below for help determining these values.
 
-Test your answers in `main` by passing `float_denorn_zero` the four values you determined above (largest and smallest positive and negative normalized numbers).  Additionally, create values between those endpoints and
+Test your answers in `main` by passing `float_denorn_zero` the four values you determined above (largest and smallest positive and negative normalized numbers).  Additionally, create a few other values between those endpoints and
 test them as well.  
 
 ### Task 2: Denormalized values 
 
 Your next task is to determine some positive and negative denormalized
-bit-pattern values for 32-bit single precision and test this function,
-`float_denorm_zero()`, with them.
+bit-pattern values for 32-bit single precision and test the `float_denorm_zero` function with them.
 
 
 Recall that for denormalized values, which are used for small numbers, the exponent bits are all zero.  
@@ -115,13 +111,11 @@ Recall from previous activities that we can use a pointer to unsigned char
 floats. This was done in the `show_bytes` example code provided again here.
 
 Let's start this process by creating a function that will make a float from its
-given bit pattern.
+given bit pattern:
 
-Complete a function called `generate_float()` that returns a float from a given
+- Complete a function called `generate_float` that returns a float from a given
 input set of bits represented by the `float_bits` type. You will need to create
-the float value using the formula:
-
-<p>(-1)<sup>s</sup> x  M x  2<sup>E</sup></p>
+the float value using the formula: $(-1)^s\times  M \times  2^E$
 
 where you compute M and E from the rules for IEEE single precision floating
 point. You will need to use the exp and frac portions from the original bit
@@ -129,7 +123,7 @@ pattern, along with the sign bit.
 
 Note that once you have the floating point representation, you can check whether
 the bytes match your original bytes from the input bit pattern. Add a test in
-`main()` that checks this on some bit patterns.
+`main` that checks this on some bit patterns.
 
 Now that this seems to work, you can use `generate_float` on a range of
 denormalized bit patterns in a loop and use assert to ensure that
