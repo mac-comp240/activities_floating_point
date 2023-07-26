@@ -1,4 +1,4 @@
-# Data Activity 8: Binary Floating Point Representation
+# Activity 8: Binary Floating Point Representation
 ## Put your name(s) here
 
 In this activity, you will explore the bit-level representation of floating-point numbers. Recall that in the IEEE single precision representation:
@@ -127,7 +127,7 @@ the bytes match your original bytes from the input bit pattern. Add a test in
 
 Now that this seems to work, you can use `generate_float` on a range of
 denormalized bit patterns in a loop and use assert to ensure that
-`float_denorn_zero()` returns what you expect. The you can try it for ranges of
+`float_denorn_zero` returns what you expect. The you can try it for ranges of
 normalized numbers.
 
 
