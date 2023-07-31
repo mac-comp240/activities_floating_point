@@ -141,7 +141,8 @@ normalized numbers.
 
 - Printf formatting codes
   - [printf format specifier reference from cplusplus.com](http://www.cplusplus.com/reference/cstdio/printf/).
-  [_Format Specifiers in C_](https://www.thecrazyprogrammer.com/2016/10/format-specifiers-c.html) by The Crazy Programmer- General C syntax help
+  [_Format Specifiers in C_](https://www.thecrazyprogrammer.com/2016/10/format-specifiers-c.html) by The Crazy Programmer
+- General C syntax help
   - [Chapter 1 of _Dive into Systems_](https://diveintosystems.org/book/C1-C_intro/index.html)
   - _The C Programming Language_, often just known as K&R for Kernighan and Ritchie
   - _C: A Reference Manual_, by Harbitson and Steele
