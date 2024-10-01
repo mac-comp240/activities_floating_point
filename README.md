@@ -56,7 +56,7 @@ as a bit pattern.
 ## Your Tasks
 
 
-## Task 1: Normalized numbers
+### Task 1: Normalized numbers
 
 Let's start by looking at normalized numbers. Recall that the binary number are represented using this general equation: $(-1)^s \times M \times 2^E$, where $s$ is the sign bit, $E$ is the biased exponent, and $M$ is the mantissa or significand.
 
