@@ -27,7 +27,7 @@ This program has the typical split between a library of functions and other defi
     - a makefile to automate the compilation process
 - `fp_coding_ex.c` and `fp_coding_ex.h`
     - Library containing functions for examining bits of a floating point number
-- `show_-_bytes.c` and `show_bytes.h`
+- `show_bytes.c` and `show_bytes.h`
     - A library file with code to display the bytes of an integer
 - `test.c`
     - Main program that tests the functions in the  `fp_coding_ex` library
